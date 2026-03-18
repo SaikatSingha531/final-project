@@ -2,7 +2,6 @@
 
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
 import { Globe, User, ShieldCheck, Plus, Loader2, Info } from "lucide-react";
 import { motion } from "framer-motion";
 import { toast } from "sonner";
@@ -11,12 +10,9 @@ import { encrypt } from "@/lib/crypto";
 import { getPasswords, savePasswords } from "@/lib/storage";
 import { useAuthStore } from "@/store/useAuthStore";
 import { PasswordFormData, PasswordItem } from "@/typescript/global";
+import { Passwordschema } from "@/services/schima";
 
-const schema = yup.object({
-  site: yup.string().required("Site name is required"),
-  username: yup.string().required("Username is required"),
-  password: yup.string().min(4, "Min 4 characters").required(),
-});
+
 
 export default function PasswordForm({ refresh }: any) {
   const { user } = useAuthStore();
@@ -27,7 +23,7 @@ export default function PasswordForm({ refresh }: any) {
     reset,
     formState: { errors, isSubmitting },
   } = useForm<PasswordFormData>({
-    resolver: yupResolver(schema),
+    resolver: yupResolver(Passwordschema),
   });
 
   const onSubmit = (data: PasswordFormData) => {
