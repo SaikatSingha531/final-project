@@ -97,7 +97,7 @@ export default function Register() {
               <LockKeyhole className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-600" />
 
               <input
-                type="password"
+                type="text"
                 {...register("password")}
                 placeholder="••••••••"
                 className="w-full bg-[#161616] border border-zinc-800 rounded-xl py-3 pl-10 pr-4 outline-none focus:ring-2 focus:ring-emerald-500/20"
